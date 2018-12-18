@@ -1,0 +1,64 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% block feed %}
+<link rel="stylesheet" href=" {% static 'css/home.css' %} ">
+
+<div class="bodypost">
+		
+		<div class="primero">
+			
+		</div>
+		<div class="segundo">
+			<form class="createpost-container" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<input type="hidden" name="user" value="{{ user.pk}}" />
+                <input type="hidden" name="profile" value="{{ profile.pk }}" />
+
+				<p class="titlecreatepost"> + crear publicación</p>
+				<textarea
+				 class="txtcreatepost" 
+				 name="title"
+				 id="" 
+				 cols="30" 
+				 rows="10" 
+				 placeholder="que tienes en mente?"
+				 ></textarea>
+				<div class="containercreateultimo">
+					
+
+					<div class="inputfilecss">
+						<input 
+						class="inputfile" 
+						type="file" 
+						onchange="mostrarimg();"
+						name="photo"
+						>
+						<span style="font-size: 14px;" class="icon-image"> sube una imagen </span>
+					</div>
+				
+					<input class="btnsubmit" type="submit" value="publicar">
+
+				</div>
+				<div class="max-width">
+					<div class="containerimgchange">
+						<img src="" alt=""  id="imgchange" >
+					</div>
+				</div>
+				
+
+			</form>
+			
+			<hr>
+
+			<div class="containerlistpost">
+				
+
+
+			</div>
+		</div>
+		<div class="tercero">
+			
+		</div>
+	</div>
+
+{% endblock %}

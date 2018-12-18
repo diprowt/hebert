@@ -1,0 +1,249 @@
+.bodypost{
+	max-width: 1000px;
+	width: 100%;
+
+	/*border: 1px solid white;*/
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.primero{
+	width: 25%;
+	height: 100px;
+	/*border:1px solid white;*/
+}
+
+.segundo{
+	width: 40%;
+	/*border:1px solid white;*/
+	min-width: 480px;
+}
+
+.tercero{
+	width: 25%;
+	height: 100px;
+	/*border:1px solid white;*/
+
+}
+
+.titlecreatepost{
+	display: block;
+	width: 95%;
+	margin: auto;
+	color: white;
+	font-family: arial;
+	font-size: 18px;
+	padding: 10px 0;
+}
+
+.txtcreatepost{
+	display: block;
+	width: 95%;
+	max-height: 30px;
+	min-height: 30px;
+	min-width: 95%;
+	max-width: 95%;
+	margin: auto;
+	border:none;
+	background: transparent;
+	color: white;
+}
+.txtcreatepost:focus{
+	outline: red;
+}
+
+.containercreateultimo{
+	width: 95%;
+	margin:5px  auto;
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.inputfilecss{
+	width:150px;
+	height: 25px;
+	background: #3bc8e7;
+	position: relative;
+	color: #070c25;
+	text-align: center;
+	line-height: 25px;
+	border-radius:5px;
+	cursor: pointer;
+	font-family: arial;
+}
+
+.inputfile{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.btnsubmit{
+	border:none;
+	cursor: pointer;
+	padding:3px 10px;
+	background: #070c25;
+	color: white;
+	border-radius: 5px;
+}
+
+.max-width{
+	width: 95%;
+	margin:5px auto;
+}
+.containerimgchange{
+	width: 150px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-height: 150px;
+	max-width: 5px 0;
+}
+
+.containerimgchange img{
+	width: 100%;
+
+}
+
+
+/*create post */
+.createpost-container{
+	background: white;
+	background: #2e334d;
+	width: 100%;
+}
+
+.containerlistpost{
+	width: 100%;
+}
+
+.post{
+	width: 100%;
+	background: #2e334d;
+	margin: 10px 0;
+}
+
+.containerinfotxtpost{
+	width: 95%;
+	margin: 0 auto;
+	padding: 3px 0;
+}
+
+.containerimgnamepost{
+	display: flex;
+	color: #3bc8e7;
+	font-family: arial;
+	line-height: 50px;
+}
+
+.containerimgnamepost h3{
+	margin: 0 5px;
+}
+
+.txtpost{
+	font-family: arial;
+	color: white;
+}
+
+.containerimgpost{
+	max-height: 400px;
+	overflow: hidden;
+
+}
+
+
+.imgpost{
+	width: 100%;
+}
+
+
+/*todo sobre el lado derechi*/
+.aboutdeveloper{
+	background: #2e334d;
+	width: 100%;
+
+	margin-top:57px; 
+}
+
+.publicidad{
+	width: 100%;
+	height: 300px;
+	background: #2e334d;
+	margin: 10px 0;
+}
+
+.aboutdev{
+	height: 1px;
+	overflow: hidden;
+	background: #14182a;
+	transition: all 0.5s;
+}
+
+.showcontent{
+	height: auto;
+	background:rgba(0,0,0,0.1);
+	padding: 5px;
+
+}
+
+
+
+
+/*todo sobre el responsive*/
+
+
+@media screen and (max-width: 650px){
+	.primero{
+		display: block;
+		position: fixed;
+		background: #14182a;
+		width: 100%;
+		max-width: 300px;
+		height: 100vh;
+		z-index: 5;
+		top: 0;
+		left: -600px;
+		transition: all 0.5s;
+	}
+
+	.ulcontainerinfo{
+		margin: 0 10px;
+	}
+
+	.tercero{
+		display: block;
+		position: fixed;
+		width: 100%;
+		top: 0;
+		right: -600px;
+		height: 100vh;
+		background: #14182a;
+		z-index: 5;
+		overflow: auto;
+		transition: all 0.5s;
+	}
+
+	.entrarderechoadds{
+		right: 0;
+	}
+
+	.segundo{
+		position: absolute;
+		min-width: 100%;
+	
+	}
+
+
+	.entrarizquierdoprofile{
+		left: 0;
+	}
+
+	.quitarizquierdoprofile{
+		left: -600px;
+
+	}
+}

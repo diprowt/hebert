@@ -1,0 +1,19 @@
+            {% load static %}
+             {% for message in object.messages.all %}
+
+                <!-- Dependiendo del usuario asignamos una clase con un color de fondo u otro en el mensaje -->
+                <div {% if request.user == message.user %}class="emisorsms"{% else %}class="receptorsms"{% endif %}>
+                  {% if request.user == message.user %}
+                  {% else %}
+                    {% if message.user.profile.avatar %}
+                      <img class="imguser" src="{{message.user.profile.avatar.url}}" alt="">
+                    {% else %}
+                      <img class="imguser" src=" {% static 'img/userdesconocido.png' %} " alt="">
+                    {% endif  %}
+                    
+                  {% endif %}
+                  <p {% if request.user == message.user %}class="textresponsesmsemisor"{% else %}class="textresponsesmsreceptor"{% endif %}>
+                    {{message.content}}
+                  </p>
+                </div>
+              {% endfor %}

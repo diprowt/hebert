@@ -1,0 +1,134 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+  background: #eaeaeae3;
+}
+
+.container-comentarios{
+  width: 500px;
+  margin:20px auto;
+
+}
+.comentarios{
+  width: 95%;
+  margin:5px auto;
+  height: auto;
+  width: 99%;
+  margin: 0 -6px;
+}
+
+.containerallcomment{
+  border: 1px solid grey;
+}
+.list-comment{
+  margin: 5px 0;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+.contimgname{
+  display: flex;
+  margin: 5px;
+}
+.contimg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 25px;
+  min-height: 25px;
+  max-width: 25px;
+  max-height: 25px;
+  overflow: hidden;
+  margin: 0 5px;
+  border-radius:5px;
+  border:1px solid rgba(255,255,255,0.3);
+}
+
+.background-comment{
+  width: 100%;
+}
+
+.containertxtcomment{
+  background: #393e58;
+  width: 100%;
+  border-radius: 10px;
+  padding: 5px ;
+  
+}
+
+.txtnameusuario{
+  color: #37c8e7;
+}
+
+.txtcomentarios{
+  color: rgba(0,0,0,0.6);
+  color: #ffffffcf;
+}
+
+.txtresponder{
+  padding: 0 5px;
+  color: #0e516bab;
+  cursor: pointer;
+  color: #ffffff9c;
+}
+.txthora{
+  padding: 0 5px;
+  color: rgba(0,0,0,0.4);
+  color: #ffffff9c;
+}
+
+.txtresponder:hover{
+  text-decoration: underline;
+}
+
+.container-reply-comments{
+  transition: all 0.5s;
+}
+/* 974210246 */
+
+
+.form-reply-commentsall{
+  border:1px solid rgba(0,0,0,0.1);
+  width: 100%;
+  display: block;
+  display: flex;
+  justify-content:space-between;
+  padding: 8px 5px;
+  border-radius: 8px;
+}
+.inputsendreply{
+  width: 80%;
+  border:none;
+  border-radius: 8px;
+  padding:3px 5px;
+  margin: 0 3px;
+  border:1px solid rgba(0,0,0,0.2);
+
+
+}
+
+.inputsendreply:focus{
+  outline: none;
+}
+.inputsubmitreply{
+  width: 10%;
+  border-radius: 8px;
+  border:none;
+
+}
+
+
+/* estyles vue*/
+
+.show-reply{
+  display: none;
+}
+
+.ocultar-reply{
+  display: block;
+}

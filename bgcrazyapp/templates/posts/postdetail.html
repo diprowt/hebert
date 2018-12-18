@@ -1,0 +1,175 @@
+{% extends "posts/base.html" %}
+{% load static  %}
+{% block feed %}
+<link rel="stylesheet" href=" {% static 'css/home.css' %} ">
+<link rel="stylesheet" href=" {% static 'css/systemcomments.css' %} ">
+
+<div class="bodypost">
+		
+		<div class="primero">
+			
+		</div>
+		<div class="segundo">
+			<!-- <form class="createpost-container" method="">
+				<p class="titlecreatepost"> + crear publicación</p>
+				<textarea class="txtcreatepost" name="" id="" cols="30" rows="10" placeholder="que tienes en mente?"></textarea>
+				<div class="containercreateultimo">
+					
+
+					<div class="inputfilecss">
+						<input class="inputfile" type="file" onchange="mostrarimg();">
+						<span class="icon-image"> sube una imagen </span>
+					</div>
+				
+					<input class="btnsubmit" type="submit" value="publicar">
+
+				</div>
+				<div class="max-width">
+					<div class="containerimgchange">
+						<img src="" alt=""  id="imgchange" >
+					</div>
+				</div>
+			</form> -->
+	
+
+			<div class="containerlistpost">
+				
+
+	
+
+					<div class="post">
+						<!-- <input
+							style="
+								width: 100%;
+								padding: 5px 0;
+							"
+						 type="submit" onclick="history.back()" value="click aqui volver a la seccion en donde se quedo"> -->
+						<div class="containerinfotxtpost">
+							<div class="containerimgnamepost">
+								<a href="{% url 'profiles:detail' post.user %}" class="containerimgnamepost" style="color:#3bc8e7;text-decoration: none;">
+									<div class="imgprofilehead">
+										
+										{% if post.profile.avatar %}
+										<img src="{{ post.profile.avatar.url }}" alt="">
+										{% else %}
+										<img src=" {% static 'img/userdesconocido.png' %} " alt="">
+										{% endif %}
+									</div>
+									<h3 style="line-height: 50px;">{{ post.user.get_full_name}}</h3>
+								</a>
+							</div>
+							{% if post.photo %}
+							<p class="txtpost">{{ post.title }}</p>
+							{% else %}
+							<p style="font-size: 25px" class="txtpost">{{ post.title }}</p>
+							{% endif %}
+							<p><small style="color: white;margin: 0 0;">- {{ post.created }}</small></p>
+						</div>
+						<figure class="containerimgpost">
+							{% if post.photo %}
+							<img class="imgpost" src="{{ post.photo.url }}" alt="">
+							{% else %}
+							<img style="display: none" src=" {% static 'img/linea.png' %} " alt="">
+							{% endif %}
+						</figure>
+						<div class="main-comment-section comentarios">
+							{% include 'posts/comments.html' %}
+						</div>
+						<input
+							style="
+								width: 100%;
+								padding: 5px 0;
+							"
+						 type="submit" onclick="history.back()" value="click aqui volver a la seccion en donde se quedo">
+					</div>
+
+
+			</div>
+		</div>
+		<div class="tercero" id="ladoderechoadds">
+			<div class="aboutdeveloper" style="margin-top: 10px;">
+				<h5 style="color: white;text-align: center;padding: 5px;cursor: pointer;" id="btndevs">
+				sobre el desarrollador
+			</h5>
+				<div class="aboutdev" style="width: 90%;margin: auto;" id="aboutdev">
+					<p style="color: white">hola, soy hebert villafuerte desarrollador de bgcrazy ,
+					me gusta el mundo de la web tanto el backend como el frontend ♥ , si gusta seguirme 
+					en cualquiera de mis redes sociales bienvenido ☺ ,
+					pronto bgcrazy tendra el boton follow . </p>
+					<ul style="display: flex;width: 90%;justify-content: space-between;margin: auto;">
+						<li style="list-style: none">
+							<a style="color: white;padding: 10px;" href="https://web.facebook.com/hebertVillafuerteC" target="_blank" class="icon-facebook2"></a></li>
+						<li style="list-style: none">
+							<a style="color: white;padding: 10px;" href="https://www.instagram.com/hebertdev/" target="_blank" class="icon-instagram"></a></li>
+						<li style="list-style: none">
+							<a style="color: white;padding: 10px;" href="https://www.youtube.com/channel/UCvVxuO28XPe-fC6khHyAA_Q" target="_blank" class="icon-youtube"></a></li>
+						<li style="list-style: none">
+							<a style="color: white;padding: 10px;" href="https://github.com/HebertVillafuerte" target="_blank" class="icon-github"></a></li>
+					</ul>
+				</div>
+				<h5 style="color: white;text-align: center;padding: 5px;cursor: pointer;" id="btnbg">sobre Bgcrazy</h5>
+				<div class="aboutdev" style="width: 90%;margin: auto;" id="contentbg">
+					<p style="color: white">
+						bgcrazy nace , como uno de mis proyectos personales ,
+						basicamente es una web social  en donde los usuarios
+						tienen un perfil y pueden publicar texto o imagenes a su manera libre sin restricciones,
+						enviarse mensajes y más. 
+						por ahora esta en su version más reciente e intento 
+						poder continuar con este proyecto .
+						pienso extender usuarios a travez de facebook ♥ 
+					</p>
+				</div>
+				<hr>
+			</div>
+			<div class="publicidad">
+				<small style="margin: 5px;color: white;">publicidad</small>
+			</div>
+		</div>
+	</div>
+
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+	<script>
+		let btndev = document.getElementById('btndevs');
+		let btnbg = document.getElementById('btnbg');
+
+		let contentdev = document.getElementById('aboutdev');
+		let contentbg = document.getElementById('contentbg')
+
+		btndev.addEventListener('click' , function(){
+			contentdev.classList.toggle('showcontent');
+
+		})
+
+		btnbg.addEventListener('click' , function(){
+			contentbg.classList.toggle('showcontent');
+
+		})
+
+
+
+		var $body = document.body;
+        var hammerleft = new Hammer($body);
+
+        var ladoderechoadds = document.getElementById('ladoderechoadds');
+        var hammerdetail = new Hammer(ladoderechoadds);
+
+        hammerleft.on('swipeleft', function(){
+          ladoderechoadds.classList.add('entrarderechoadds')
+          // alert("hola prros")
+        });
+
+        
+
+        hammerleft.on('swiperight', function(){
+          ladoderechoadds.classList.remove('entrarderechoadds')
+          // alert("hola prros")
+        });
+          
+
+        //   hammerdetail.on('swiperight', function(){
+        //   izquierdoprofile.classList.add('entrarizquierdo')
+        //   // alert("hola prros")
+        // });
+
+	</script>
+{% endblock %}

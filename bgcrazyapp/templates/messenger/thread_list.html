@@ -1,0 +1,213 @@
+{% extends 'posts/basechat.html' %}
+{% load static %}
+{% block contentchat %}
+
+<link rel="stylesheet" href=" {% static 'css/listsmsview.css' %} ">
+<link rel="stylesheet" href=" {% static 'css/listsmsviewresponse.css' %} ">
+
+<div class="contentchatall">
+    <div class="storbito"></div>
+    <div class="contentchat">
+      <div class="listuser" id="izquierdo">
+        <div class="contentsearch">
+          
+        </div>
+        <div class="listausersms" id="">
+          
+        {% if not request.user.threads.all %}
+        <h3 style="color: white;text-align: center;margin: 10px 0;">todavia no has iniciado una conversación</h3>
+        {% else %}
+        {% endif %}
+        {% for message in thread.object.messages.all %}
+          {{message.content}}
+        {% endfor %}
+ 
+        {% for thread in request.user.threads.all %}
+          {% if thread.messages.all|length > 0 %}
+          <div class="usersms">
+            {% for user in thread.users.all %}
+            {% if user != request.user %}
+            <div class="contentusersms">
+              <a class="contentusersms" style="color: white; text-decoration: none;" href="{% url 'messenger:detail' thread.pk %}">
+                <div class="contentimgprofileuser">
+                  {% if user.profile.avatar %}
+                   <img src="{{user.profile.avatar.url}}" alt="">
+                  {% else %}
+                    <img src=" {% static 'img/userdesconocido.png' %} " alt="">
+                  {% endif %}
+              </div>
+              <div>
+                <p style="line-height: 30px">
+                  {{user.get_full_name}}
+                  {% if request.user == thread.messages.last.user %}
+                  
+                  {% else %}
+                   <span  style="font-size: 20px; border-radius: 100%;"><small></small>
+                    <small class="icon-mail4" style="
+                    color: red;
+                    background: #f9f9f9;
+                    padding: 2px;
+                    margin-top: 3px;
+                    border-radius: 100%;
+                    "
+                    ></small></span>
+                  {% endif %}
+                
+                 <p style="display: flex;"><small style="display: block;max-width:200px;overflow: hidden;height: 15px;">
+                  {% if request.user == thread.messages.last.user %}
+                  tu: {{thread.messages.last.content}}
+                  {% else %}
+                  {{thread.messages.last.content}}
+                  {% endif %}
+                  </small><strong>...</strong></p>
+                </p>
+              </div>
+              </a>
+            </div>
+            {% endif %}
+          {% endfor %} 
+          </div>
+          {% endif %}
+        {% endfor %} 
+        </div>
+      </div>
+      <div  class="messagedetail" style="background: #E6EAEA;display: flex;justify-content: center;
+      align-items: center;">
+        <div>
+          <h4 style="text-align: center;display: block;width: 250px;margin: 20px auto;">Selecciona a un usuario de la izquiera para iniciar una conversación</h4>
+          <img src=" {% static 'img/sms.png' %} " alt="" width="150" style="display: block;margin: auto;">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+    
+          <ul>
+            {% for thread in request.user.threads.all %}
+              {% if thread.messages.all|length > 0 %}
+                <li class="contact">
+                  {% for user in thread.users.all %}
+                   {% if user != request.user %}
+                    <a href="{% url 'messenger:detail' thread.pk %}" style="color: white;text-decoration: none;">
+                      <div class="wrap">
+                        <span class="contact-status online"></span>
+                        <div class="contimgchat">
+                          {% if user.profile.avatar %}
+                            <img src="{{user.profile.avatar.url}}" alt="">
+                          {% else %}
+                            <img src="" alt="">
+                          {% endif %}
+                        </div>
+                        
+                        <div class="meta">
+                          <p class="name">{{user}}</p>
+                          <p class="preview">el ultimo sms jajaja no te creo ni masdasdasdasdrda reseindente contra tempo xdxd</p>
+                        </div>
+                      </div>
+                    </a>
+                    {% endif %}
+                  {% endfor %} 
+                </li>
+              {% endif %}
+           {% endfor %}
+          </ul>
+        </div>
+        
+      </div>
+      <div class="content">
+        <div class="containersmscenter">
+          <div style="width: 60%; margin: auto;" >
+            
+            <p style="color: #1b2039;font-size: 20px;text-align: center;">selecciona a un usuario de la izquierda para empezar un chat</p>
+            <img style="display: block;margin:20px auto;" src="{% static 'img/sms.png' %}" alt="" width="120">
+          </div>          
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script>
+    var $body = document.getElementById('frame');
+    var hammerleft = new Hammer($body);
+    var izquierdo = document.getElementById('sidepanel');
+
+    hammerleft.on('swiperight', function(){
+        // izquierdo.classList.add('entrarizquierdo')
+        izquierdo.style.left = 0;
+        console.log('derecha')
+
+      });
+
+
+      hammerleft.on('swipeleft', function(){
+        // izquierdo.classList.add('entrarizquierdo')
+        izquierdo.style.left = -600 + 'px';
+        console.log('izquierdo')
+
+      });
+
+  </script>
+
+
+<div class="containermessenger">
+    <div class="storbohead"></div>
+    <div class="sub-containermessenger">
+      <div class="rightuser">
+        <ul class="containerlistauser">
+          {% for thread in request.user.threads.all %}
+            {% if thread.messages.all|length > 0 %}
+              
+                  <li>
+                  {% for user in thread.users.all %}
+                   {% if user != request.user %}
+                    <a href="{% url 'messenger:detail' thread.pk %}">
+                      
+                      <div class="containertxtnamesms">
+                        <div style="max-height: 35px;overflow: hidden;">
+                          <p>{{user}}</p>
+                          <p><p class="smsshow">el ultimo sms jajaja no te creo ni masdasdasdasdrda reseindente contra tempo xdxd</p></p>
+                        </div>
+                        <p><small style="color: rgba(255,255,255,0.3);">{{thread.messages.last.created|timesince}}</small></p>
+                      </div>
+                      <div class="newsms">
+                        <p class="newsmsuser">1</p>
+                      </div>
+                    </a>
+                    {% endif %}
+                  {% endfor %} 
+                  </li> 
+            {% endif %}
+           {% endfor %}
+
+          
+        </ul>
+
+
+<!-- Recorremos los Threads y sólo mostramos los que tienen como mínimo 1 mensaje -->
+            {% for thread in request.user.threads.all %}
+              {% if thread.messages.all|length > 0 %}
+                <div class="mb-3">
+                  <!-- Recorremos los miembros del hilo menos el propio request.user -->
+                  {% for user in thread.users.all %}
+                    {% if user != request.user %}   
+                      <!-- Mostramos el avatar del miembro -->  
+                      {% if user.profile.avatar %}
+                        <img src="{{user.profile.avatar.url}}" class="avatar">
+                      {% else %}
+                        <img src="{% static 'registration/img/no-avatar.jpg' %}" class="avatar">
+                      {% endif %}
+                      <!-- Mostramos la información del miembro -->
+                      <div>
+                        <a href="{% url 'messenger:detail' thread.pk %}">{{user}}</a><br>
+                        <small><i>Hace {{thread.messages.last.created|timesince}}</i></small>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endfor %}

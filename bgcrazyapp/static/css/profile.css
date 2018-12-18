@@ -1,0 +1,178 @@
+.containerprofileview{
+	max-width: 1000px;
+	height: 300px;
+	background-image: url(../img/defaultcover.jpg);
+	margin: auto;
+/*	background-attachment: fixed;*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    border:1px solid rgba(255,255,255,0.2);
+    justify-content: space-between;
+    position: relative;
+
+}
+
+.sotrboheadprofile{
+	height: 50px;
+}
+
+.containerimgprofileview{
+	width: 180px;
+	height: 180px;
+	border:2px solid white;
+	margin: 0 50px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	border-radius: 100%;
+
+
+}
+
+.containerimgprofileview img{
+	width: 100%;
+
+}
+
+
+.txtnameprofile{
+	font-family: arial;
+	font-size: 20px;
+	padding: 5px;
+	-webkit-text-stroke: 1.5px rgba(0,0,0,0.5);
+	color: white;
+	font-weight: 900;
+}
+
+
+.perfilinfollow{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 10px;
+	background: linear-gradient(90deg, rgba(0,0,0,0) , rgba(0,0,0,.3) , rgba(0,0,0,.2) , rgba(0,0,0,0));
+	padding: 5px;
+}
+
+.btnedit{
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	display: block;
+	width: 100px;
+    border:1px solid rgba(255,255,255,0.2);
+	
+	padding: 5px;
+	margin:5px auto;
+	background: #1b2039;
+	border-radius: 5px;
+
+}
+
+.btnedit:hover{
+	color: white;
+	text-decoration: none;
+}
+
+
+.ulprofilefollow{
+	display: flex;
+}
+
+.ulprofilefollow li{
+	list-style: none;
+	color: white;
+	margin: 0 10px;
+}
+
+
+.linemenuprofile{
+	height: 30px;
+	max-width: 1000px;
+	margin: 5px auto;
+	background: #262a3e;
+    border:1px solid rgba(255,255,255,0.1);
+    color: #8EDBF2;
+
+}
+
+.linemenuprofile ul{
+	display: flex;
+	justify-content: space-between;
+}
+
+.linemenuprofile ul li{
+	list-style: none;
+	/*margin: 0 5px;*/
+	border-left:1px solid rgba(255,255,255,0.2);
+	border-right: 1px solid rgba(255,255,255,0.2);
+	padding:0 5px
+}
+
+.linemenuprofile ul li a{
+	color: white;
+	line-height: 30px;
+	text-decoration: none;
+
+}
+
+.btnaddfriends{
+	background: #3bc8e7;
+	border-radius: 5px;
+}
+
+.righprofile{
+	/*background: #2e334d;*/
+}
+
+.righprofile h3{
+	font-family: arial;
+	text-align: center;
+	color:white;
+	margin:5px 0;
+}
+
+
+
+
+
+
+/*todooooo sobre el responsive desing */
+@media screen and (max-width: 650px){
+	.containerprofileview{
+		display: block;
+	}
+	.perfilinfollow{
+		position: static;
+		padding: 5px;
+		margin: 0 auto;
+	}
+
+	.ulprofilefollow{
+		justify-content: center;
+	}
+
+	.containerimgprofileview{
+		height: 150px;
+		width: 150px;
+		margin: 3px auto;
+	}
+
+	.linemenuprofile{
+		height: auto;
+	}
+
+	.linemenuprofile ul{
+		flex-wrap: wrap;
+	}
+
+	.btnaddfriends{
+		margin: 5px;
+	}
+
+
+}

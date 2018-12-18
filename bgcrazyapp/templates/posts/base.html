@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>bgcrazy</title>
+	<link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+	<link rel="icon" href=" {% static 'img/bgcrazypng.ico' %} ">
+	
+</head>
+<body style="background: #14182a">
+
+	{% include 'posts/nav.html' %}
+	{% block feed %}
+
+	{% endblock %}
+	<script src="{% static 'js/jquery-3.2.1.slim.min.js' %}" ></script>
+    <script src="{% static 'js/popper.min.js' %}" ></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    
+	
+	<script src=" {% static 'js/ajaxcomment.js' %} "></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+	<script>
+	const header = new Vue({
+		el:'#appheader',
+		data:{
+			truefalse:'close'
+		}
+	})
+
+
+	function mostrarimg(){
+        let previa = document.querySelector('img[id=imgchange]');
+        let file = document.querySelector('input[type=file]').files[0];
+
+        var leer = new FileReader();
+
+        if(file){
+            leer.readAsDataURL(file);
+            leer.onloadend=function(){
+
+            previa.src=leer.result;
+
+            }
+                }
+            else{
+                previa.src=""
+              }
+            }
+	
+</script>
+</body>
+</html>

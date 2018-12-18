@@ -1,0 +1,277 @@
+{% extends  "posts/base.html" %}
+{% load static %}
+
+{% block feed %}
+<link rel="stylesheet" href=" {% static 'css/profile.css' %} ">
+<link rel="stylesheet" href=" {% static 'css/home.css' %} ">
+
+<style>
+  
+
+  .contentckeditor img{
+    width: 100%;
+    height: auto;
+  }
+
+  .contentckeditor * {
+    color: white;
+  }
+</style>
+
+<div class="containerprofileview" 
+    {% if profile.cover %}
+    style="background-image: url({{profile.cover.url}});"
+    {% else %}
+    
+    {% endif %}
+    >
+    <div>
+      <div class="containerimgprofileview">
+         {% if profile.avatar %}
+          <img src="{{profile.avatar.url}}" alt="">
+         {% else %}
+          <img src=" {% static 'img/userdesconocido.png' %} " alt="">
+         {% endif %}
+      </div>
+      <p class="txtnameprofile" style="text-align: center;color: white">{{profile.user.get_full_name}}</p>
+    </div>
+    <div class="perfilinfollow">
+      <div>
+        {% if request.user != profile.user %}
+        <form id="formlike" action="{% url 'follow_user' %}" method="POST">
+        {% csrf_token %}
+                {% if is_followed %}
+                <button style="width: 110px;cursor: pointer;" type="submit" id="like" name="user_id" value="{{ profile.id }}" class="btnedit">dejar de seguir</button>
+                {% else %}
+                <button style="cursor: pointer;" type="submit" id="like" name="user_id" value="{{ profile.id }}" class="btnedit">seguir</button>
+                {% endif %}
+        </form>
+       
+        {% else %}
+        <a class="btnedit" href=" {% url 'profile' %} ">Editar perfil</a>
+        {% endif %}
+      </div>
+      <div>
+        
+        
+
+       <!--  {% for follower in profile.follower.all %}
+                  
+          <p style="color: white">{{follower.first_name }} {{follower.last_name}}</p>
+                    
+        {% endfor %}
+ -->
+       
+      </div>
+      <hr>
+      <ul class="ulprofilefollow">
+        <li> <strong>{{total_followers}}</strong> {% if total_followers == 1 %} seguidor {% else %} seguidores {% endif %} </li>
+        <li> <strong>0</strong> seguidos </li>
+      </ul>
+    </div>
+  </div>
+  
+
+  <div class="linemenuprofile">
+    <ul>
+      <li><a href="">Publicaciones</a></li>
+      <li><a href="">Photos</a></li>
+      <li><a href="">amigos</a></li>
+      {% if request.user != profile.user %}
+      <li><a href="{% url 'messenger:start' profile.user.username %}">enviar mensaje</a></li>
+      <li class="btnaddfriends"><a href="">Añadir amigo</a></li>
+      {% else %}
+
+      {% endif %}
+
+
+    </ul>
+  </div>
+
+  <div class="bodypost listpostprofile" >
+    
+    <div class="primero righprofile" id="ladoizquierdo">
+      <h3>Info {{profile.user}} </h3>
+      <ul class="ulcontainerinfo">
+        <li style="list-style: none; text-align: center;margin: 10px 0;">
+          <span style="color: #8EDBF2">{{ profile.bio }}</span>
+        </li>
+
+        <!-- <li style="list-style: none;">
+          <span style="color: #8EDBF2">Arequipa-Perú</span>
+        </li>
+ -->
+        {% if profile.link %}
+        <li style="list-style: none;">
+          <span style="color: #8EDBF2"><a  style="color: #8EDBF2" href="{{profile.link}}">mi website</a></span>
+        </li>
+        {% else %}
+        {% endif %}
+
+        <li class="" style="list-style: none;">
+          <span style="color: #8EDBF2"> {{profile.phone}} </span>
+        </li>
+
+
+        
+      </ul>
+    </div>
+
+
+
+    <div class="segundo">
+      <!-- <form class="createpost-container" method="">
+        <p class="titlecreatepost"> + crear publicación</p>
+        <textarea class="txtcreatepost" name="" id="" cols="30" rows="10" placeholder="que tienes en mente?"></textarea>
+        <div class="containercreateultimo">
+          
+
+          <div class="inputfilecss">
+            <input class="inputfile" type="file" onchange="mostrarimg();">
+            <span class="icon-image"> sube una imagen </span>
+          </div>
+        
+          <input class="btnsubmit" type="submit" value="publicar">
+
+        </div>
+        <div class="max-width">
+          <div class="containerimgchange">
+            <img src="" alt=""  id="imgchange" >
+          </div>
+        </div>
+        
+
+      </form> -->
+      <div>
+        <a href="{% url 'posts:create' %}" style="
+        color: black;
+        background-color:white;
+        display: block;
+        width: 200px;
+        text-align: center;
+        margin: 0;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 10px;
+        ">
+          <p> +  crear publicacion <span class="icon-image"></span> </p>
+        </a>
+      </div>
+      
+      <hr style="background:red;margin: 5px 0;">
+
+      <div class="containerlistpost">
+        
+
+        {% for post in posts %}
+
+          <div class="post">
+            <div class="containerinfotxtpost">
+              <div class="containerimgnamepost">
+                <a href="{% url 'profiles:detail' post.user %}" class="containerimgnamepost" style="color:#3bc8e7;text-decoration: none;">
+                  <div class="imgprofilehead">
+                    {% if post.profile.avatar %}
+                    <img src="{{ post.profile.avatar.url }}" alt="">
+                    {% else %}
+                    <img src=" {% static 'img/userdesconocido.png' %} " alt="">
+                    {% endif %}
+                  </div>
+                  <h3 style="line-height: 50px;">{{ post.user.get_full_name}}</h3>
+                </a>
+              </div>
+              <div class="contentckeditor">
+              {% if post.photo %}
+              <p class="txtpost">{{ post.title|safe }}</p>
+              {% else %}
+              <p style="font-size: 25px;color: white" class="txtpost">{{ post.title|safe }}</p>
+              {% endif %}
+              </div>
+              
+            </div>
+            <figure class="containerimgpost" style="position: relative;">
+              {% if post.photo %}
+              <img class="imgpost imgclickmodal" src="{{ post.photo.url }}" alt="">
+              {% else %}
+              <img style="display: none" src=" {% static 'img/linea.png' %} " alt="">
+              {% endif %}
+              {% if post.photo %}
+              <p style="
+                  position: absolute;
+                  background: rgba(0,0,0,0.6);
+                  bottom: 0;
+                  left: 0;
+                  margin: 5px;"><small style="color: white;margin: 0 10px;">
+              
+                hace {{ post.created|timesince }}
+              
+              </small></p>
+              {% endif %}
+
+            </figure>
+            {% if not post.photo %}
+            <p style="
+                  margin: 5px;"><small style="color: white;margin: 0 10px;">
+              
+                hace {{ post.created|timesince }}
+              
+              </small></p>
+            {% endif %}
+
+            <div style="padding: 2px;">
+              
+              <p style="margin: 5px 0;"><a href="{% url "posts:detail" post.pk %}" style="color: white;margin: 5px 5px;
+              display: block;background: black;width: 80px;text-align: center;border-radius: 5px;">comentar</a></p>
+              
+              
+                {% if request.post == comment %}    
+                          <p style="color: white">{{comment.last.content}}</p>
+                        {% endif %}
+
+
+            </div>
+          </div>
+
+        {% endfor %}
+        
+
+      </div>
+    </div>
+    <div class="tercero">
+      
+    </div>
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script>
+      var $body = document.body;
+      var hammerleft = new Hammer($body);
+
+      var izquierdoprofile = document.getElementById('ladoizquierdo');
+      var hammerdetail = new Hammer(izquierdoprofile);
+
+       hammerleft.on('swiperight', function(){
+          izquierdoprofile.classList.add('entrarizquierdoprofile')
+          // alert("hola prros")
+        });
+
+        
+
+        hammerleft.on('swipeleft', function(){
+          izquierdoprofile.classList.remove('entrarizquierdoprofile')
+          // alert("hola prros")
+        });
+          
+
+        //   hammerdetail.on('swiperight', function(){
+        //   izquierdoprofile.classList.add('entrarizquierdo')
+        //   // alert("hola prros")
+        // });
+
+  
+  </script>
+{% endblock %}
+
+
+

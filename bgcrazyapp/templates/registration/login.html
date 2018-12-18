@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  {% if request.user.is_authenticated %}
+    <script>window.location.href = '/accounts/profile/'; </script>
+  {% endif %}
+<style>.errorlist{color:red;}</style>
+
+<div class="principal-banner">
+    <div class="opaco">
+      <div class="aligncenter">
+        <div class="contianerformlogin">
+          <div class="container">
+            <div class="row mt-3">
+              <div class="col-md-9 mx-auto mb-5">
+                
+                <form action="" class="formulariologin" method="post">{% csrf_token %}
+                  {% if 'register' in request.GET %}
+                  <p style="color:green;">Usuario registrado correctamente, ya puedes identificarte.</p>
+                  {% endif %}
+                  <div class="containerformtitleimg">
+                    <img class="logoform" src=" {% static 'img/bglogo2.png' %} " alt="" width="200">
+                    <h3 class="titlesesion" style="color: #262b34">Iniciar Sesion</h3>
+                  </div>
+                  {% if form.non_field_errors %}
+                    <p style="color:red">Usuario o contraseña incorrectos, prueba de nuevo.</p>
+                  {% endif %}
+                  <p>
+                    <input autocomplete="off" type="text" name="username" autofocus maxlength="254" required
+                      id="id_username" class="inputusername form-control" placeholder="Nombre de usuario"/>
+                  </p>
+                  <p>
+                    <input autocomplete="off" type="password" name="password" required
+                      id="id_password" class="inputusername form-control" placeholder="Contraseña"/>
+                  </p>
+                  <p><input type="submit" class="btn btn-primary btn-block btnsubmit" value="Acceder"></p>
+                 <!--  <p>
+                  ¿Ha olvidado su clave? Puede restaurarla <a href="{% url 'password_reset' %}">aquí</a>.
+                  </p> -->
+                  <p>
+                  No tiene una cuenta , registrese gratis <a href="{% url 'signup' %}">aquí</a>.
+                  </p>
+                </form>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+
+  
+
+{% endblock %}

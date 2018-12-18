@@ -1,0 +1,127 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background: #14182a;
+}
+
+.header{
+	height: 50px;
+	width: 100%;
+	background: #dded44;
+	background: #b8ca05;
+	background: #1b2039;
+	position: fixed;
+	z-index: 5;
+}
+
+.max-header{
+	max-width: 1000px;
+	width: 100%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	z-index: 3;
+}
+
+.storbohead{
+	height: 65px;
+}
+
+.logohead{
+	height: 40px;
+	margin: 6px 0;
+}
+
+
+
+
+.containerminiprofile{
+	display: flex;
+
+}
+
+.imgprofilehead{
+	width: 35px;
+	height: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	overflow: hidden;
+	border: 2px solid #3bc8e7;
+	border-radius: 5px;
+	margin: 6px 0;
+}
+
+.imgprofilehead img{
+	width: 100%;
+	cursor: pointer;
+
+}
+
+.linksalir{
+	text-decoration: none;
+}
+
+
+.icon-flickr{
+	color: white;
+	cursor: pointer;
+	padding: 5px;
+	display: block;
+	width: 20px;
+	margin: 11px 11px 10px 2px;
+}
+.txtminisalir{
+	background: #3bc8e7;
+	padding: 5px 20px;
+	margin: 10px 0;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+
+.modalprofile{
+	width: 250px;
+	
+	background: white;
+	background: #2e334d;
+	position: absolute;
+	right: 0;
+	top:-355px;
+	color: white;
+	font-family: arial;
+	/*border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;*/
+	border-radius: 8px;
+	box-shadow: 0px 0px 10px 0px rgba(59, 200, 231,0.4);
+	/*transition: all 0.1s;*/
+	position: 1;
+
+}
+
+.openmodal{
+	top: 55px;
+}
+
+.nametxt{
+	padding: 10px ;
+	text-align: center;
+}
+
+.linksprofile{
+	color: #3bc8e7;
+	display: block;
+	text-align: center;
+	padding: 10px;
+}
+
+.icon-cross{
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	padding: 10px;
+}

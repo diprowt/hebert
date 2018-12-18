@@ -1,0 +1,144 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.header{
+	height: 50px;
+	width: 100%;
+	/*background: rgba(0,0,0,0.1);*/
+	position: fixed;
+	z-index: 2;
+}
+
+
+.principal-banner{
+	background:url(../../img/banner.jpg);
+  	background-attachment: fixed;
+  	background-size: cover;
+ 	background-position: center;
+  	background-repeat: no-repeat;
+  	width: 100%;
+  	height: 100vh;
+  	position: relative;
+}
+
+.opaco{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #14182ae0;
+}
+
+.aligncenter{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	font-family: arial;
+}
+
+.formulariologin{
+	background: white;
+	background: rgba(255,255,255,0.9);
+	width: 400px;
+
+	border-radius: 8px;
+	padding: 15px;
+
+}
+
+.containerformtitleimg{
+	padding: 20px;
+}
+
+.titlesesion{
+	text-align: center;
+	font-size: 25px;
+}
+
+.logoform{
+	display: block;
+	width: 130px;
+	margin: auto;
+}
+
+.containerinputs{
+	padding: 30px 0;
+}
+
+.inputlogin{
+	width: 90%;
+	display: block;
+	margin: 15px auto;
+	border:none;
+	border-bottom: 2px solid #808c0c;
+	font-size: 17px;
+}
+
+.inputlogin:focus{
+	outline: none;
+}
+
+.inputsubmit{
+	width: 90%;
+	display: block;
+	margin: auto;
+	border: none;
+	background: #808c0c;
+	color: white;
+	padding: 8px;
+	cursor: pointer;
+}
+
+.txtsignup{
+	display: block;
+	width: 90%;
+	margin: auto;
+	padding: 20px 0;
+
+}
+
+.inputusername{
+	box-shadow: none;
+}
+
+.inputusername:focus{
+	outline: none;
+	box-shadow: none;
+	border-color: #ced4da;
+
+}
+
+.txtsignup a{
+	
+	color: #262b34;
+}
+
+.btnsubmit{
+	cursor: pointer;
+    background: #070c25;
+    border: none;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 650px){
+	
+	.formulariologin{
+		max-width: 400px;
+		width: 100%;
+	}
+
+	.contianerformlogin{
+		max-width: 400px;
+		width: 100%;
+	}
+}

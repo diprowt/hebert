@@ -1,0 +1,48 @@
+{% load static %}
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>messages</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+	<link rel="icon" href=" {% static 'img/bgcrazypng.ico' %} ">
+	
+
+</head>
+<body onload="ajax();">
+	{% include 'posts/nav.html' %}
+	{% block contentchat %}
+	{% endblock %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+	<script>
+	const header = new Vue({
+		el:'#appheader',
+		data:{
+			truefalse:'close'
+		}
+	})
+
+
+	function mostrarimg(){
+        let previa = document.querySelector('img[id=imgchange]');
+        let file = document.querySelector('input[type=file]').files[0];
+
+        var leer = new FileReader();
+
+        if(file){
+            leer.readAsDataURL(file);
+            leer.onloadend=function(){
+
+            previa.src=leer.result;
+
+            }
+                }
+            else{
+                previa.src=""
+              }
+            }
+	
+</script>
+	
+</body>
+</html>

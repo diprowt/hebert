@@ -1,0 +1,108 @@
+{% load static %}
+	<link rel="stylesheet" href=" {% static 'css/header.css' %} ">
+	<header class="header" id="appheader">
+		<div class="max-header">
+			<div>
+				<a href=" {% url 'posts:feed' %} "><img class="logohead" src=" {% static 'img/bglogo.png' %} " alt="" width="150"></a>
+			</div>
+	
+			<div class="containerminiprofile">
+				<a href="{% url "profiles:detail" request.user.username %}">
+					<div class="imgprofilehead">
+						{% if request.user.profile.avatar %}
+						<img src="{{ request.user.profile.avatar.url }}" alt="">
+						{% else %}
+		                <img src=" {% static 'img/userdesconocido.png' %} " alt="">
+		                {% endif %}
+					</div>
+				</a>
+				
+				<div style="display: flex;">
+
+					<a href="{% url 'messenger:list' %}" class="icon-bubbles"
+						style="
+						color: white;
+					    /* border: 1px solid white; */
+					    display: block;
+					    font-size: 20px;
+					    text-decoration: none;
+					    line-height: 50px;
+					    padding: 0 5px;
+					    margin: 0 0 1px 15px;
+					    position: relative;
+						" 
+					>
+						
+					  
+	                 	  {% if request.user == thread.messages.last.user %}
+	                 	  hola
+		                  {% else %}
+		                  <p  style="
+							position: absolute;
+						    left: 17px;
+						    top: 10px;
+						    display: block;
+						    width: 10px;
+						    height: 10px;
+						    background-color: red;
+						    border-radius: 100%;
+						   "></p>
+	                 	  {% endif %}
+	                  
+	               
+					
+					</a>
+
+					<a href="{% url 'messenger:list' %}" 
+						style="
+						color: white;
+					    /* border: 1px solid white; */
+					    display: block;
+					    font-size: 20px;
+					    text-decoration: none;
+					    line-height: 50px;
+					    padding: 0 5px;
+					    margin: 0 0 1px 7px;
+						" 
+					>
+						<img src=" {% static 'img/notificationimg.png' %} " alt="" width="25" 
+						style="margin: 13px 0;display: block;">
+					</a>
+
+					<span class="icon-flickr" 
+						  v-on:click="truefalse='open'"
+						  v-if="truefalse=='close'"
+					>	  	
+					</span>
+
+					<span class="icon-flickr" 
+						  v-if="truefalse=='open'"
+						  v-on:click="truefalse='close'" 
+						  style="color: #3bc8e7">
+						  
+					</span>
+
+
+
+
+				</div>
+				<!-- <div class="containertxtminisalir" style="margin: 0 5px;">
+
+					<a class="linksalir" href=" {% url 'logout' %} " style="text-decoration: none;"><p class="txtminisalir" style="color: white;text-decoration: none;">salir</p></a>
+				</div> -->
+
+			</div>
+
+			<div class="modalprofile" v-bind:class="{'openmodal':truefalse=='open'}" style="display: block;">
+				<p class="nametxt">{{request.user.get_full_name}} </p>
+				<a style="color: #3bc8e7;text-decoration: none;" class="linksprofile" href="{% url 'messenger:list' %}">Mensajes</a>
+				<a style="color: #3bc8e7;text-decoration: none;" class="linksprofile" href="{% url 'profile' %}">editar perfil</a>
+				<a style="color: #3bc8e7;text-decoration: none;" class="linksprofile" href=" {% url 'posts:create' %} ">Crear Publicación</a>
+				<a style="color: #3bc8e7;text-decoration: none;" class="linksprofile" href=" {% url 'logout' %} ">Cerrar Sesión</a>
+				<span class="icon-cross" v-on:click="truefalse='close'"></span>
+			</div>
+			
+		</div>
+	</header>
+
+	<div class="storbohead"></div>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .errorlist{color:red;} 
+  label{display:none}
+  .helptext{
+    display: none;
+  }
+
+  .errorlist li{
+    display: block;
+    list-style: none;
+  }
+
+  li{
+    display: none;
+  }
+
+
+</style>
+
+
+<div class="principal-banner">
+    <div class="opaco">
+      <div class="aligncenter">
+        <div class="contianerformlogin">
+          <div class="container">
+            <div class="row mt-3">
+              <div class="col-md-9 mx-auto mb-5">
+                <form class="formulariologin" action="" method="post">{% csrf_token %}
+                  <div class="containerformtitleimg">
+                    <img class="logoform" src=" {% static 'img/bglogo2.png' %} " alt="" width="200">
+                    <h3 class="titlesesion" style="color: #262b34">Registrarse</h3>
+                  </div>
+                  {{form.as_p}}
+                  <p><input type="submit" class="btn btn-primary btn-block btnsubmit" value="Confirmar"></p>
+                  <a style="text-align: center; " href="{% url 'login' %}">iniciar sesion</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+  
+
+{% endblock %}
